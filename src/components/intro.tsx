@@ -19,11 +19,11 @@ const IntroComponent = () => {
             <span className="text-purple-200 font-semibold">Building cool projects</span> and <span className="text-cyan-200 font-semibold">competing in CTFs</span>.
         </p>
         
-        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <div className="hidden mt-8 sm:flex flex-col sm:flex-row justify-center gap-4">
           <a href='#projects' className="px-6 py-3 rounded-full border border-cyan-500/50 bg-stone-900/50 text-cyan-400 hover:bg-cyan-900/30 hover:border-cyan-400 transition-all duration-300 font-medium">
             My Projects
           </a>
-          <a href='#contact' className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-gray-200 hover:bg-purple-900/30 hover:border-purple-400 hover:text-purple-200 transition-all duration-300 font-medium">
+          <a href='#contact' className="hidden sm:flex 1px-6 py-3 rounded-full border border-white/10 bg-white/5 text-gray-200 hover:bg-purple-900/30 hover:border-purple-400 hover:text-purple-200 transition-all duration-300 font-medium">
             Contact Me
           </a>
         </div>
