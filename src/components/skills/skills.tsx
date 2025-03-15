@@ -76,16 +76,9 @@ export default function Skills() {
   return (
     <section id="skills-section" className="w-full bg-transparent rounded-lg overflow-hidden">
       <div className="container mx-auto px-4 text-center">
-        <h2 className={`text-5xl font-extrabold text-white mb-4 transition-all duration-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-        }`}>
+        <h2 className={`text-3xl font-extrabold text-cyan-200 mb-6 transition-all duration-200"`}>
           Technical Skills
         </h2>
-        <p className={`text-cyan-400/80 text-lg mb-6 transition-all duration-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
-          Technologies & Tools
-        </p>
       </div>
 
       {/* Scrolling Tech Tracks */}
