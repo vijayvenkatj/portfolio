@@ -1,6 +1,7 @@
 import PortfolioBackground from '@/components/background';
 import ProfileSection from '@/components/hero/profile';
 import Skills from '../skills/skills';
+import Projects from '../projects/projects';
 
 export default function HomePage() {
   return (
@@ -15,7 +16,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <ProfileSection />
           <Skills />
-          <ProfileSection />
+          <Projects />
           <ProfileSection />
           <ProfileSection />
         </div>
