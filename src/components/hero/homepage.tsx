@@ -17,8 +17,6 @@ export default function HomePage() {
           <ProfileSection />
           <Skills />
           <Projects />
-          <ProfileSection />
-          <ProfileSection />
         </div>
       </div>
     </div>

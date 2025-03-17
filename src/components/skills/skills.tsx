@@ -76,9 +76,12 @@ export default function Skills() {
   return (
     <section id="skills-section" className="w-full bg-transparent rounded-lg overflow-hidden">
       <div className="container mx-auto px-4 text-center">
-        <h2 className={`text-3xl font-extrabold text-cyan-200 mb-6 transition-all duration-200"`}>
+        <h2 className={`text-3xl font-extrabold text-white/90 mb-3 transition-all duration-200"`}>
           Technical Skills
         </h2>
+        <p className="text-stone-400 max-w-2xl mx-auto">
+          Here are some of the tools and technologies I've worked with recently:
+        </p>
       </div>
 
       {/* Scrolling Tech Tracks */}

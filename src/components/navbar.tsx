@@ -26,7 +26,7 @@ export default function StickyGlassNavbar() {
       isScrolled ? 'py-2' : 'py-4'
     }`}>
       <nav
-        className={`w-full max-w-6xl mx-auto bg-stone-900/30 border border-white/10 rounded-full px-6 py-3 flex items-center justify-between ${
+        className={`w-full max-w-6xl mx-auto bg-stone-900/30 border border-white/10 backdrop-blur-sm rounded-full px-6 py-3 flex items-center justify-between ${
             isScrolled ? 'shadow-md shadow-purple-400/60' : ''
         }`}
         >
