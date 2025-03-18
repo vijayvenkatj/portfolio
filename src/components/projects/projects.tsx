@@ -34,7 +34,7 @@ const CaseStudyCard = ({ caseStudy, isActive, onClick }: CaseStudyCardProps) => 
   return (
     <div 
       className={`relative rounded-xl overflow-hidden transition-all duration-500 cursor-pointer mb-4 ${
-        isActive ? 'border-purple-500 shadow-lg shadow-purple-500/20' : 'border-white/10'
+        isActive ? 'border-purple-600/90' : 'border-white/40'
       } border`}
       onClick={onClick}
     >
@@ -45,7 +45,7 @@ const CaseStudyCard = ({ caseStudy, isActive, onClick }: CaseStudyCardProps) => 
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent opacity-100"></div>
         
         <div className="absolute bottom-0 left-0 p-4 w-full">
           <h3 className="text-xl font-bold text-white mb-1">{caseStudy.title}</h3>
@@ -69,7 +69,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
   };
 
   return (
-    <section id="case-studies" className="relative w-full py-12 md:py-20 bg-transparent">
+    <section id="projects" className="relative w-full py-12 md:py-20 bg-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="mb-8 md:mb-16">
@@ -164,7 +164,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
           </div>
           
           {/* Active case study details - full width on mobile, right side on desktop */}
-          <div className="lg:col-span-7 bg-stone-950/60 rounded-xl p-6 md:p-8 border border-white/10">
+          <div className="lg:col-span-7 bg-stone-950/80 rounded-xl p-6 md:p-8 border border-white/30">
             <div className="flex items-start mb-4 md:mb-6">
               <div className="h-px w-6 md:w-8 bg-purple-500 mr-2 mt-3"></div>
               <h3 className="text-xl md:text-2xl font-bold text-white">{caseStudies[activeStudy].title}</h3>
@@ -210,7 +210,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
               {caseStudies[activeStudy].technologies.map((tech, index) => (
                 <div
                   key={index}
-                  className="px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm border border-white/20 text-white bg-stone-900"
+                  className="px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm border border-white/30 text-white bg-stone-900/60 hover:border-purple-500"
                 >
                   {tech}
                 </div>
@@ -237,21 +237,20 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
   );
 };
 
-// Example usage with typed data
+
 export default function FeaturedWork() {
-  // Sample case studies data - replace with your actual data
   const caseStudiesData: CaseStudy[] = [
     {
       id: 1,
       title: "IntelliSum",
       description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization.",
-      imageUrl: intellisum, // Replace with your actual image path
+      imageUrl: intellisum,
       highlights: [
-        "Implemented OpenAI API integration for email content analysis.",
         "Built responsive dashboard for email management.",
-        "Created efficient data caching for improved performance."
+        "Gmail API integration for real-time email fetching.",
+        "Implemented Gemini API integration for email content analysis.",
       ],
-      technologies: ["Next.js", "MongoDB", "Gmail API", "OpenAI", "Tailwind CSS"],
+      technologies: ["Next.js", "MongoDB", "Gmail API", "Oauth", "Tailwind CSS"],
       link: "https://intellisum.vijayvenkatj.me",
       github: "https://github.com/vijayvenkatj/IntelliSum"
     },
@@ -259,13 +258,13 @@ export default function FeaturedWork() {
       id: 2,
       title: "TimeTable",
       description: "A simple and efficient timetable management app for students with AI-powered schedule optimization.",
-      imageUrl: timetable, // Replace with your actual image path
+      imageUrl: timetable,
       highlights: [
         "Designed intuitive interface for course scheduling.",
-        "Implemented drag-and-drop functionality for easy timetable creation.",
+        "Implemented Upload functionality for easy timetable creation.",
         "Integrated conflict detection system for overlapping classes."
       ],
-      technologies: ["React", "Firebase", "Tailwind CSS", "Redux"],
+      technologies: ["React", "Mongo", "Tailwind CSS", "Generative AI"],
       link: "https://timetable.vijayvenkatj.me",
       github: "https://github.com/CampusCrafters/Timetable_v2"
     },
@@ -276,17 +275,18 @@ export default function FeaturedWork() {
       imageUrl: cypher,
       highlights: [
         "Built with Go for high performance and cross-platform compatibility.",
+        "Built for Browser and CLI.",
         "Implemented zero-knowledge encryption for maximum security.",
         "Created intuitive CLI interface for easy password management."
       ],
       technologies: ["Go", "CLI", "Cryptography", "Security"],
-      github: "https://github.com/vijayvenkatj/Cypher-Cli"
+      github: "https://github.com/vijayvenkatj/Cypher-Cli",
     },
     {
       id: 4,
       title: "Portfolio Website",
       description: "A modern, responsive portfolio website built with Next.js and Tailwind CSS to showcase projects and skills.",
-      imageUrl: portfolio, // Replace with your actual image path
+      imageUrl: portfolio,
       highlights: [
         "Designed with a focus on user experience and accessibility.",
         "Implemented smooth animations and transitions.",

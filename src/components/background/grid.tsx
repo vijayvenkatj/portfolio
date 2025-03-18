@@ -5,7 +5,7 @@ export const Grid = () => {
           {Array.from({ length: 96 }).map((_, i) => (
             <div 
               key={`cell-${i}`} 
-              className="border border-stone-600/30" 
+              className="border border-stone-600/40" 
             />
           ))}
         </div>

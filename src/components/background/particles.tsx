@@ -1,7 +1,7 @@
 export const Particles = () => {
     return (
       <>
-        {Array.from({ length: 40 }).map((_, i) => {
+        {Array.from({ length: 50 }).map((_, i) => {
           const size = Math.floor(Math.random() * 5) + 2;
           const xPos = Math.random() * 100;
           const yPos = Math.random() * 100;

@@ -2,6 +2,7 @@ import PortfolioBackground from '@/components/background';
 import ProfileSection from '@/components/hero/profile';
 import Skills from '../skills/skills';
 import Projects from '../projects/projects';
+import AboutMe from '../about/about';
 
 export default function HomePage() {
   return (
@@ -13,10 +14,11 @@ export default function HomePage() {
         
       {/* Main Content */}
       <div className="relative z-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
           <ProfileSection />
-          <Skills />
+          <AboutMe />
           <Projects />
+          <Skills />
         </div>
       </div>
     </div>

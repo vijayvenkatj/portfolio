@@ -13,7 +13,7 @@ export default function ProfileImage() {
           alt="Portrait"
           width={400}
           height={400}
-          className="w-full object-cover rounded-full"
+          className=" object-cover rounded-full"
         />
       </div>
     </div>

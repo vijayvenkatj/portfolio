@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import aws from '../../../public/icons/aws.svg';
 import ts from '../../../public/icons/ts.svg';
@@ -46,8 +46,8 @@ const firstRow = technologies.slice(0, Math.ceil(technologies.length / 2));
 const secondRow = technologies.slice(Math.ceil(technologies.length / 2));
 
 const TechnologyTag = ({ name, icon }: { name: string; icon: any }) => (
-  <div className="flex flex-col items-center p-4 rounded-lg bg-stone-900/50 border border-stone-800 shadow-md">
-    <div className="relative w-16 h-16">
+  <div className="flex flex-col items-center p-4 rounded-lg bg-stone-900/50 border border-white/10 shadow-md hover:border-purple-500/50 transition-colors">
+    <div className="relative w-12 h-12 md:w-16 md:h-16">
       <Image src={icon} alt={`${name} icon`} fill className="object-contain" />
     </div>
     <p className="text-sm font-semibold text-gray-300 mt-2">{name}</p>
@@ -56,51 +56,74 @@ const TechnologyTag = ({ name, icon }: { name: string; icon: any }) => (
 
 export default function Skills() {
   const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
       { threshold: 0.1 }
     );
 
-    const sectionElement = document.getElementById('skills-section');
-    if (sectionElement) observer.observe(sectionElement);
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => {
-      if (sectionElement) {
-        observer.unobserve(sectionElement);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
       }
     };
   }, []);
 
   return (
-    <section id="skills" className="w-full bg-transparent rounded-lg overflow-hidden">
-      <div className="mb-16">
+    <section 
+      id="skills" 
+      ref={sectionRef}
+      className={`relative w-full py-16 md:py-24 bg-transparent transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section header */}
+        <div className="mb-12 md:mb-16">
           <p className="text-center text-sm uppercase tracking-wider text-stone-400 mb-2">Here, My current tech stack</p>
-          <h2 className="text-center text-4xl md:text-5xl font-bold mb-12">
+          <h2 className="text-center text-3xl md:text-5xl font-bold">
             <span className="text-white">Technical</span>
-            <span className="bg-gradient-to-r from-cyan-400 to-cyan-500 text-transparent bg-clip-text ml-4">tools</span>
+            <span className="bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text ml-2">tools</span>
           </h2>
-      </div>
-
-      {/* Scrolling Tech Tracks */}
-      <div className="relative w-full px-8 overflow-hidden">
-        {/* First Row - Left to Right */}
-        <div className="flex space-x-6 py-4 animate-scroll-left">
-          {[...firstRow, ...firstRow].map((tech, index) => (
-            <div key={`row1-${index}`} className="w-40 flex-shrink-0">
-              <TechnologyTag name={tech.name} icon={tech.icon} />
-            </div>
-          ))}
         </div>
 
-        {/* Second Row - Right to Left */}
-        <div className="flex space-x-6 py-4 animate-scroll-right">
-          {[...secondRow, ...secondRow].map((tech, index) => (
-            <div key={`row2-${index}`} className="w-40 flex-shrink-0">
-              <TechnologyTag name={tech.name} icon={tech.icon} />
+        {/* Skills Container */}
+        <div className="relative w-full overflow-hidden">
+          {/* First Row - Left to Right */}
+          <div className="mb-8 relative">
+            <div className="flex space-x-6 py-4 animate-scroll-left">
+              {[...firstRow, ...firstRow].map((tech, index) => (
+                <div key={`row1-${index}`} className="w-32 md:w-40 flex-shrink-0">
+                  <TechnologyTag name={tech.name} icon={tech.icon} />
+                </div>
+              ))}
             </div>
-          ))}
+            <div className="absolute left-0 top-0 h-full w-16 bg-transparent"></div>
+            <div className="absolute right-0 top-0 h-full w-16 bg-transparent"></div>
+          </div>
+
+          {/* Second Row - Right to Left */}
+          <div className="relative">
+            <div className="flex space-x-6 py-4 animate-scroll-right">
+              {[...secondRow, ...secondRow].map((tech, index) => (
+                <div key={`row2-${index}`} className="w-32 md:w-40 flex-shrink-0">
+                  <TechnologyTag name={tech.name} icon={tech.icon} />
+                </div>
+              ))}
+            </div>
+            <div className="absolute left-0 top-0 h-full w-16 bg-transparent"></div>
+            <div className="absolute right-0 top-0 h-full w-16 bg-transparent"></div>
+          </div>
         </div>
       </div>
 
@@ -108,19 +131,19 @@ export default function Skills() {
       <style jsx>{`
         @keyframes scrollLeft {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-100%); }
+          100% { transform: translateX(-50%); }
         }
         @keyframes scrollRight {
-          0% { transform: translateX(-100%); }
+          0% { transform: translateX(-50%); }
           100% { transform: translateX(0); }
         }
         .animate-scroll-left {
           display: flex;
-          animation: scrollLeft 30s linear infinite;
+          animation: scrollLeft 5s linear infinite;
         }
         .animate-scroll-right {
           display: flex;
-          animation: scrollRight 30s linear infinite;
+          animation: scrollRight 5s linear infinite;
         }
       `}</style>
     </section>
