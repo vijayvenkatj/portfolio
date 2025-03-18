@@ -139,11 +139,11 @@ export default function Skills() {
         }
         .animate-scroll-left {
           display: flex;
-          animation: scrollLeft 5s linear infinite;
+          animation: scrollLeft 4s linear infinite;
         }
         .animate-scroll-right {
           display: flex;
-          animation: scrollRight 5s linear infinite;
+          animation: scrollRight 4s linear infinite;
         }
       `}</style>
     </section>

@@ -56,7 +56,7 @@ const AboutMe = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className={`relative w-full py-16 md:py-24 bg-transparent transition-all duration-1000 ${
+      className={`relative w-full py-16 md:py-24 bg-transparent ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
