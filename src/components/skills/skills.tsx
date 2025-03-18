@@ -74,18 +74,17 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills-section" className="w-full bg-transparent rounded-lg overflow-hidden">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className={`text-3xl font-extrabold text-white/90 mb-3 transition-all duration-200"`}>
-          Technical Skills
-        </h2>
-        <p className="text-stone-400 max-w-2xl mx-auto">
-          Here are some of the tools and technologies I've worked with recently:
-        </p>
+    <section id="skills" className="w-full bg-transparent rounded-lg overflow-hidden">
+      <div className="mb-16">
+          <p className="text-center text-sm uppercase tracking-wider text-stone-400 mb-2">Here, My current tech stack</p>
+          <h2 className="text-center text-4xl md:text-5xl font-bold mb-12">
+            <span className="text-white">Technical</span>
+            <span className="bg-gradient-to-r from-cyan-400 to-cyan-500 text-transparent bg-clip-text ml-4">tools</span>
+          </h2>
       </div>
 
       {/* Scrolling Tech Tracks */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full px-8 overflow-hidden">
         {/* First Row - Left to Right */}
         <div className="flex space-x-6 py-4 animate-scroll-left">
           {[...firstRow, ...firstRow].map((tech, index) => (

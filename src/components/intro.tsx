@@ -29,9 +29,9 @@ const IntroComponent = () => {
         </div>
 
         {/* Scroll Down Arrow */}
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
+        <a href='#skills' className="absolute bottom-2 left-1/2 transform -translate-x-1/2">
             <FaChevronDown className="text-cyan-400 text-3xl animate-bounce" />
-        </div>
+        </a>
       </div>
     </div>
   );

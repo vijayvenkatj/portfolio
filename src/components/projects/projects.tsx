@@ -1,146 +1,235 @@
 "use client"
-
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
-import intellisum from '../../../public/intellisum.png';
+import Link from 'next/link';
+
 import cypher from '../../../public/cypher.png';
+import intellisum from '../../../public/intellisum.png';
 import timetable from '../../../public/timetable.png';
+import portfolio from '../../../public/portfolio.png';
 
 // Define TypeScript interfaces
-interface Project {
+interface CaseStudy {
   id: number | string;
   title: string;
   description: string;
-  imageUrl?: string | StaticImageData;
+  imageUrl: string | StaticImageData;
+  highlights: string[];
   technologies: string[];
-  categories?: string[];
-  githubUrl?: string;
-  liveUrl?: string;
+  link?: string;
+  github?: string;
 }
 
-interface ProjectCardProps {
-  project: Project;
+interface CaseStudyCardProps {
+  caseStudy: CaseStudy;
+  isActive: boolean;
+  onClick: () => void;
 }
 
-interface ProjectsShowcaseProps {
-  projects: Project[];
+interface FeaturedCaseStudiesProps {
+  caseStudies: CaseStudy[];
 }
 
-const ProjectCard = ({ project }: ProjectCardProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
+const CaseStudyCard = ({ caseStudy, isActive, onClick }: CaseStudyCardProps) => {
   return (
     <div 
-      className="relative group bg-stone-950/60 border border-white/20 rounded-xl overflow-hidden transition-all duration-300 hover:border-white/40"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`relative rounded-xl overflow-hidden transition-all duration-500 cursor-pointer mb-4 ${
+        isActive ? 'border-purple-500 shadow-lg shadow-purple-500/20' : 'border-white/10'
+      } border`}
+      onClick={onClick}
     >
-      {/* Project Image with Overlay */}
-      <div className="relative w-full h-64 overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-b from-transparent to-stone-950/90 z-10 transition-opacity duration-300 ${isHovered ? 'opacity-90' : 'opacity-70'}`}></div>
+      <div className="relative w-full aspect-video overflow-hidden">
+        <Image
+          src={caseStudy.imageUrl}
+          alt={caseStudy.title}
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent opacity-80"></div>
         
-        {project.imageUrl ? (
-          <div className="relative h-64 w-full">
-            <Image
-              src={project.imageUrl}
-              alt={project.title}
-              fill
-              className="object-fill"
-            />
-          </div>
-        ) : (
-          <div className="relative h-64 w-full flex items-center justify-center">
-            <span className="text-2xl text-stone-400 font-bold">{project.title[0]}</span>
-          </div>
-        )}
-
-      </div>
-      
-      {/* Content */}
-      <div className="p-6 relative z-20 bg-stone-950/60">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-          {project.title}
-        </h3>
-        
-        <p className="text-stone-300 text-sm mb-4 line-clamp-2">
-          {project.description}
-        </p>
-        
-        {/* Links */}
-        <div className="flex items-center space-x-3 mt-4">
-          {project.githubUrl && (
-            <Link 
-              href={project.githubUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center space-x-1 text-white transition-colors duration-300"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.48 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.022A9.607 9.607 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.934.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.165 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
-              </svg>
-              <span className="text-sm font-medium hover:text-purple-400 transition-colors duration-300">GitHub</span>
-            </Link>
-          )}
-          
-          {project.liveUrl && (
-            <Link 
-              href={project.liveUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center space-x-1 text-white hover:text-cyan-400 transition-colors duration-300"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"/>
-              </svg>
-              <span className="text-sm font-medium">Live Demo</span>
-            </Link>
-          )}
+        <div className="absolute bottom-0 left-0 p-4 w-full">
+          <h3 className="text-xl font-bold text-white mb-1">{caseStudy.title}</h3>
+          <p className="text-sm text-stone-300 line-clamp-2">{caseStudy.description}</p>
         </div>
-      </div>
-      
-      {/* Glow effect on hover */}
-      <div className={`absolute inset-0 transition-opacity duration-300 pointer-events-none ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent"></div>
-        <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-cyan-500 to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-purple-400 to-transparent"></div>
       </div>
     </div>
   );
 };
 
-const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
-  const [filter, setFilter] = useState<string>('all');
-  
-  // Get unique categories from projects
-  const categories = ['all', ...new Set(projects.flatMap(project => project.categories || []))];
-  
-  // Filter projects based on selected category
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.categories?.includes(filter));
-  
+const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
+  const [activeStudy, setActiveStudy] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (direction: 'prev' | 'next') => {
+    if (direction === 'prev') {
+      setActiveStudy(prev => (prev > 0 ? prev - 1 : caseStudies.length - 1));
+    } else {
+      setActiveStudy(prev => (prev < caseStudies.length - 1 ? prev + 1 : 0));
+    }
+  };
+
   return (
-    <section className="relative w-full py-16">
-      {/* Content container - transparent background */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="case-studies" className="relative w-full py-12 md:py-20 bg-transparent">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            <span className="bg-clip-text text-white/90">
-              My Projects
-            </span>
+        <div className="mb-8 md:mb-16">
+          <p className="text-center text-sm uppercase tracking-wider text-stone-400 mb-2">FEATURED Personal Projects</p>
+          <h2 className="text-center text-3xl md:text-5xl font-bold mb-6 md:mb-12">
+            <span className="text-white">Featured</span>
+            <span className="bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text ml-2 md:ml-4">work</span>
           </h2>
-          <p className="text-stone-400 max-w-2xl mx-auto">
-            A showcase of my work and side projects exploring different technologies and ideas.
-          </p>
         </div>
         
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        {/* Mobile navigation controls (visible on small screens) */}
+        <div className="flex justify-between items-center mb-6 md:hidden">
+          <button 
+            className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
+            onClick={() => handleScroll('prev')}
+            aria-label="Previous project"
+          >
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <span className="text-stone-300 text-sm">
+            {activeStudy + 1} / {caseStudies.length}
+          </span>
+          <button 
+            className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
+            onClick={() => handleScroll('next')}
+            aria-label="Next project"
+          >
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M9 6l6 6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+          {/* Thumbnails container - full width on mobile, left side on desktop */}
+          <div className="lg:col-span-5 relative">
+            {/* Desktop scroll buttons - hidden on mobile */}
+            <div className="hidden md:flex absolute -top-12 right-0 space-x-2 z-10">
+              <button 
+                className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
+                onClick={() => {
+                  if (scrollRef.current) {
+                    scrollRef.current.scrollTop -= 200;
+                  }
+                }}
+                aria-label="Scroll up"
+              >
+                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M18 15l-6-6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <button 
+                className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
+                onClick={() => {
+                  if (scrollRef.current) {
+                    scrollRef.current.scrollTop += 200;
+                  }
+                }}
+                aria-label="Scroll down"
+              >
+                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M6 9l6 6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            
+            {/* Desktop scrollable container - hidden on mobile */}
+            <div 
+              ref={scrollRef} 
+              className="hidden md:block max-h-96 lg:max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-stone-900"
+            >
+              {caseStudies.map((study, index) => (
+                <CaseStudyCard
+                  key={study.id}
+                  caseStudy={study}
+                  isActive={index === activeStudy}
+                  onClick={() => setActiveStudy(index)}
+                />
+              ))}
+            </div>
+            
+            {/* Mobile current case study thumbnail - visible only on mobile */}
+            <div className="md:hidden">
+              <CaseStudyCard
+                caseStudy={caseStudies[activeStudy]}
+                isActive={true}
+                onClick={() => {}}
+              />
+            </div>
+          </div>
+          
+          {/* Active case study details - full width on mobile, right side on desktop */}
+          <div className="lg:col-span-7 bg-stone-950/60 rounded-xl p-6 md:p-8 border border-white/10">
+            <div className="flex items-start mb-4 md:mb-6">
+              <div className="h-px w-6 md:w-8 bg-purple-500 mr-2 mt-3"></div>
+              <h3 className="text-xl md:text-2xl font-bold text-white">{caseStudies[activeStudy].title}</h3>
+              <div className="ml-auto flex gap-2">
+                {caseStudies[activeStudy].github && (
+                  <Link href={caseStudies[activeStudy].github} className="mr-2">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center border border-white/20 hover:border-purple-500 transition-colors">
+                      <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  </Link>
+                )}
+                <Link href={caseStudies[activeStudy].link || '#'}>
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center border border-white/20 hover:border-purple-500 transition-colors">
+                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path d="M5 12h14M12 5l7 7-7 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+            </div>
+              
+            <p className="text-sm md:text-base text-stone-300 mb-6 md:mb-8">
+              {caseStudies[activeStudy].description}
+            </p>
+              
+            <div className="space-y-3 md:space-y-4">
+              {caseStudies[activeStudy].highlights.map((highlight, index) => (
+                <div key={index} className="flex items-start">
+                  <div className="mr-2 mt-1">
+                    <svg className="w-4 h-4 text-purple-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 22L3 17V7L12 2L21 7V17L12 22Z" />
+                    </svg>
+                  </div>
+                  <p className="text-sm md:text-base text-stone-300">{highlight}</p>
+                </div>
+              ))}
+            </div>
+              
+            {/* Technologies */}
+            <div className="mt-6 md:mt-10 flex flex-wrap gap-2">
+              {caseStudies[activeStudy].technologies.map((tech, index) => (
+                <div
+                  key={index}
+                  className="px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm border border-white/20 text-white bg-stone-900"
+                >
+                  {tech}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Mobile dot indicators for navigation */}
+        <div className="flex justify-center mt-6 md:hidden">
+          {caseStudies.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 mx-1 rounded-full ${
+                index === activeStudy ? 'bg-purple-500' : 'bg-stone-700'
+              }`}
+              onClick={() => setActiveStudy(index)}
+              aria-label={`Go to project ${index + 1}`}
+            />
           ))}
         </div>
       </div>
@@ -149,46 +238,64 @@ const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
 };
 
 // Example usage with typed data
-export default function Projects() {
-  // Sample projects data - replace with your actual data
-  const projectsData: Project[] = [
+export default function FeaturedWork() {
+  // Sample case studies data - replace with your actual data
+  const caseStudiesData: CaseStudy[] = [
     {
-        id: 1,
-        title: "Intellisum",
-        description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models (LLMs) for automated email summarization. ",
-        imageUrl: intellisum,
-        technologies: ["Generative AI","MongoDB","Gmail API","Full Stack"],
-        categories: ["web", "fullstack"],
-        githubUrl: "https://github.com/vijayvenkatj/Intellisum",
-        liveUrl: "https://intellisum.vijayvenkatj.me"
+      id: 1,
+      title: "IntelliSum",
+      description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization.",
+      imageUrl: intellisum, // Replace with your actual image path
+      highlights: [
+        "Implemented OpenAI API integration for email content analysis.",
+        "Built responsive dashboard for email management.",
+        "Created efficient data caching for improved performance."
+      ],
+      technologies: ["Next.js", "MongoDB", "Gmail API", "OpenAI", "Tailwind CSS"],
+      link: "https://intellisum.vijayvenkatj.me",
+      github: "https://github.com/vijayvenkatj/IntelliSum"
     },
     {
-        id: 2,
-        title: "TimeTable",
-        description: "A simple and efficient timetable management app for students.",
-        imageUrl: timetable,
-        technologies: ["Generative AI","MongoDB","Full Stack"],
-        categories: ["web", "fullstack"],
-        githubUrl: "https://github.com/CampusCrafters/Timetable_v2",
-        liveUrl: "https://timetable.vijayvenkatj.me/"
+      id: 2,
+      title: "TimeTable",
+      description: "A simple and efficient timetable management app for students with AI-powered schedule optimization.",
+      imageUrl: timetable, // Replace with your actual image path
+      highlights: [
+        "Designed intuitive interface for course scheduling.",
+        "Implemented drag-and-drop functionality for easy timetable creation.",
+        "Integrated conflict detection system for overlapping classes."
+      ],
+      technologies: ["React", "Firebase", "Tailwind CSS", "Redux"],
+      link: "https://timetable.vijayvenkatj.me",
+      github: "https://github.com/CampusCrafters/Timetable_v2"
     },
     {
       id: 3,
       title: "Cypher-Cli",
-      description: "An Open Source all on client cloud Password Manager.",
+      description: "An Open Source client-side cloud Password Manager with advanced encryption techniques.",
       imageUrl: cypher,
-      technologies: ["Go","CLI","Cryptography","Security"],
-      categories: ["cli", "security"],
-      githubUrl: "https://github.com/vijayvenkatj/Cypher-Cli",
-  },
-
-    // Add more projects as needed
+      highlights: [
+        "Built with Go for high performance and cross-platform compatibility.",
+        "Implemented zero-knowledge encryption for maximum security.",
+        "Created intuitive CLI interface for easy password management."
+      ],
+      technologies: ["Go", "CLI", "Cryptography", "Security"],
+      github: "https://github.com/vijayvenkatj/Cypher-Cli"
+    },
+    {
+      id: 4,
+      title: "Portfolio Website",
+      description: "A modern, responsive portfolio website built with Next.js and Tailwind CSS to showcase projects and skills.",
+      imageUrl: portfolio, // Replace with your actual image path
+      highlights: [
+        "Designed with a focus on user experience and accessibility.",
+        "Implemented smooth animations and transitions.",
+        "Optimized for performance and SEO."
+      ],
+      technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+      link: "https://vijayvenkatj.me"
+    }
   ];
-
-  return <ProjectsShowcase projects={projectsData} />;
+  
+  return <FeaturedCaseStudies caseStudies={caseStudiesData} />;
 }
-
-
-
-
-

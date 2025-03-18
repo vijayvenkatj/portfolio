@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import dp from '../../../public/intellisum.png';
+import dp from '../../../public/dp.png';
 
 export default function ProfileImage() {
   return (
