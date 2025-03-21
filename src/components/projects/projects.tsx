@@ -242,20 +242,6 @@ export default function FeaturedWork() {
   const caseStudiesData: CaseStudy[] = [
     {
       id: 1,
-      title: "IntelliSum",
-      description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization.",
-      imageUrl: intellisum,
-      highlights: [
-        "Built responsive dashboard for email management.",
-        "Gmail API integration for real-time email fetching.",
-        "Implemented Gemini API integration for email content analysis.",
-      ],
-      technologies: ["Next.js", "MongoDB", "Gmail API", "Oauth", "Tailwind CSS"],
-      link: "https://intellisum.vijayvenkatj.me",
-      github: "https://github.com/vijayvenkatj/IntelliSum"
-    },
-    {
-      id: 2,
       title: "TimeTable",
       description: "A simple and efficient timetable management app for students with AI-powered schedule optimization.",
       imageUrl: timetable,
@@ -269,7 +255,7 @@ export default function FeaturedWork() {
       github: "https://github.com/CampusCrafters/Timetable_v2"
     },
     {
-      id: 3,
+      id: 2,
       title: "Cypher-Cli",
       description: "An Open Source client-side cloud Password Manager with advanced encryption techniques.",
       imageUrl: cypher,
@@ -283,17 +269,31 @@ export default function FeaturedWork() {
       github: "https://github.com/vijayvenkatj/Cypher-Cli",
     },
     {
+      id: 3,
+      title: "IntelliSum",
+      description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization.",
+      imageUrl: intellisum,
+      highlights: [
+        "Built responsive dashboard for email management.",
+        "Gmail API integration for real-time email fetching.",
+        "Implemented Gemini API integration for email content analysis.",
+      ],
+      technologies: ["Next.js", "MongoDB", "Gmail API", "Oauth", "Tailwind CSS"],
+      link: "https://intellisum.vijayvenkatj.me",
+      github: "https://github.com/vijayvenkatj/IntelliSum"
+    },
+    {
       id: 4,
-      title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with Next.js and Tailwind CSS to showcase projects and skills.",
+      title: "Terminal-based Portfolio Website",
+      description: "A modern, responsive terminal based portfolio website built with Next.js and Tailwind CSS to showcase projects and skills.",
       imageUrl: portfolio,
       highlights: [
         "Designed with a focus on user experience and accessibility.",
-        "Implemented smooth animations and transitions.",
         "Optimized for performance and SEO."
       ],
       technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-      link: "https://vijayvenkatj.me"
+      link: "https://terminal.vijayvenkatj.me",
+      github: "https://github.com/vijayvenkatj/terminal"
     }
   ];
   

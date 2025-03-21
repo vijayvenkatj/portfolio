@@ -74,7 +74,7 @@ export default function StickyGlassNavbar() {
               Projects
             </Link>
             <Link 
-              href="#terminal"
+              href="https://terminal.vijayvenkatj.me/"
               onClick={() => setActiveItem('terminal')} 
               className={`px-4 py-2 rounded-full transition-all duration-200 font-medium ${
                 activeItem === 'terminal' 
@@ -176,13 +176,13 @@ export default function StickyGlassNavbar() {
                 Projects
               </Link>
               <Link 
-                href="#terminal" 
+                href="https://terminal.vijayvenkatj.me/" 
                 onClick={() => {
-                  setActiveItem('contact');
+                  setActiveItem('terminal');
                   setIsMobileMenuOpen(false);
                 }}
                 className={`flex items-center px-4 py-3 mb-2 rounded-xl font-medium transition-all ${
-                  activeItem === 'contact'
+                  activeItem === 'terminal'
                     ? 'bg-cyan-400 text-stone-950' 
                     : 'text-white hover:bg-stone-800/50'
                 }`}

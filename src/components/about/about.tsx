@@ -23,10 +23,10 @@ const AboutMe = () => {
       description: 'Developed security-focused web applications, including a Cypher CLI tool using Node.js and Go. Built and optimized scalable applications with React, Next.js, and cloud services, ensuring performance and security best practices.'
     },
     {
-      company: "Campus Town",
-      position: "DevOps Engineer",
-      period: "2023 - 2024",
-      description: "Helped build and maintain the infrastructure for the platform. Implemented CI/CD pipelines, containerization, and cloud-based solutions to optimize performance and scalability."
+      company: "CyberSecurity Club IIITK",
+      position: "Core Member",
+      period: "2023 - Present",
+      description: "Helped organising Apoorv CTF with 2349+ users and 1247 teams. Created Web exploitation challenges.  Managed event logistics and participant support.  "
     }
   ];
 
