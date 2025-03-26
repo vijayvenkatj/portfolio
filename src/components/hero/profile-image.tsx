@@ -4,16 +4,23 @@ import dp from '../../../public/dp.png';
 
 export default function ProfileImage() {
   return (
-    <div className="relative">
-      <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-80 blur-sm"></div>
-      <div className="relative overflow-hidden rounded-lg">
+    <div className="relative inline-block">
+      {/* Optimized gradient background */}
+      <div 
+        className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-75 blur-md" 
+        aria-hidden="true"
+      ></div>
+      
+      {/* Improved image container */}
+      <div className="relative overflow-hidden rounded-full border-4 border-gray-800/50">
         <Image
-          loading='lazy'
+          priority
           src={dp}
-          alt="Portrait"
+          alt="Vijay - Portrait"
           width={400}
           height={400}
-          className=" object-cover rounded-full"
+          quality={90}
+          className="object-cover rounded-full transition-transform duration-300 hover:scale-105"
         />
       </div>
     </div>
