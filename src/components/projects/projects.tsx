@@ -1,5 +1,5 @@
 "use client"
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 
@@ -30,7 +30,7 @@ interface FeaturedCaseStudiesProps {
   caseStudies: CaseStudy[];
 }
 
-const CaseStudyCard = ({ caseStudy, isActive, onClick }: CaseStudyCardProps) => {
+const CaseStudyCard = React.memo(({ caseStudy, isActive, onClick }: CaseStudyCardProps) => {
   return (
     <div 
       className={`relative rounded-xl overflow-hidden transition-all duration-500 cursor-pointer mb-4 ${
@@ -43,6 +43,7 @@ const CaseStudyCard = ({ caseStudy, isActive, onClick }: CaseStudyCardProps) => 
           src={caseStudy.imageUrl}
           alt={caseStudy.title}
           fill
+          priority={caseStudy.id === 1}
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent opacity-100"></div>
@@ -54,7 +55,7 @@ const CaseStudyCard = ({ caseStudy, isActive, onClick }: CaseStudyCardProps) => 
       </div>
     </div>
   );
-};
+});
 
 const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
   const [activeStudy, setActiveStudy] = useState<number>(0);

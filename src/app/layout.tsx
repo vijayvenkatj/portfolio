@@ -6,8 +6,8 @@ import StickyGlassNavbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin-ext"] });
 
 export const metadata: Metadata = {
-  title: "Vijay Venkat J",
-  description: "Portfolio website of Vijay Venkat J",
+  title: "Vijay Venkat J | Full-Stack Developer & Cybersecurity Enthusiast",
+  description: "Explore the portfolio of Vijay Venkat J, a full-stack developer specializing in React, Next.js, Node.js, and cybersecurity. Showcasing projects, blogs, and technical expertise.",
 };
 
 export default function RootLayout({
