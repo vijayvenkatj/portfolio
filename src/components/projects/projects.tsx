@@ -97,7 +97,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
         {/* Section header */}
         <div className="mb-8 md:mb-16">
           <p 
-            className="text-center text-sm uppercase tracking-wider text-stone-100 mb-2"
+            className="text-center text-md uppercase tracking-wider text-white mb-2"
             aria-hidden="true"
           >
             FEATURED Personal Projects
@@ -122,7 +122,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
               <path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <span className="text-stone-100 text-sm">
+          <span className="text-white text-md">
             {activeStudy + 1} / {caseStudies.length}
           </span>
           <button 
