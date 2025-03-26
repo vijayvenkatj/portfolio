@@ -72,7 +72,7 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Header */}
         <div className="mb-12 md:mb-16 text-center">
-          <p className="text-sm uppercase tracking-wider text-stone-400 mb-2">
+          <p className="text-sm uppercase tracking-wider text-stone-300 mb-2">
             My Current Tech Stack
           </p>
           <h2 className="text-3xl md:text-5xl font-bold">

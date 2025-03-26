@@ -45,8 +45,7 @@ const CaseStudyCard = React.memo(({ caseStudy, isActive, onClick }: CaseStudyCar
         <Image
           src={caseStudy.imageUrl}
           alt={`${caseStudy.title} project screenshot`}
-          fill
-          priority={caseStudy.id === 1}
+          loading='lazy'
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent opacity-100"></div>
@@ -98,7 +97,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
         {/* Section header */}
         <div className="mb-8 md:mb-16">
           <p 
-            className="text-center text-sm uppercase tracking-wider text-stone-400 mb-2"
+            className="text-center text-sm uppercase tracking-wider text-stone-300 mb-2"
             aria-hidden="true"
           >
             FEATURED Personal Projects

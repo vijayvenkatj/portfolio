@@ -7,7 +7,7 @@ export default function ProfileImage() {
     <div className="relative inline-block">
       {/* Optimized gradient background */}
       <div 
-        className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-75 blur-md" 
+        className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full opacity-50 blur-sm" 
         aria-hidden="true"
       ></div>
       
@@ -19,6 +19,7 @@ export default function ProfileImage() {
           alt="Vijay - Portrait"
           width={400}
           height={400}
+          layout="intrinsic"  // Helps with CLS (Cumulative Layout Shift)
           quality={90}
           className="object-cover rounded-full transition-transform duration-300 hover:scale-105"
         />

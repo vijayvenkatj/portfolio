@@ -93,7 +93,7 @@ const SkillCard = ({ icon: Icon, title, description, iconBg }: {
       </div>
       <h4 className="text-white font-medium text-sm md:text-base">{title}</h4>
     </div>
-    <p className="text-stone-400 text-sm">{description}</p>
+    <p className="text-stone-300 text-sm">{description}</p>
   </div>
 );
 
@@ -131,7 +131,7 @@ export default function AboutMe() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section header */}
         <div className="mb-12 md:mb-16">
-          <p className="text-center text-sm uppercase tracking-wider text-stone-400 mb-2">ABOUT ME</p>
+          <p className="text-center text-sm uppercase tracking-wider text-stone-300 mb-2">ABOUT ME</p>
           <h1 className="text-center text-3xl md:text-5xl font-bold">
             <span className="text-white">Who</span>
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text ml-2">I Am</span>
@@ -252,7 +252,7 @@ export default function AboutMe() {
                     <h3 className="text-lg font-bold text-white">{exp.position}</h3>
                     <div className="flex flex-wrap items-center mt-1 mb-3">
                       <span className="text-purple-400 text-sm mr-3">{exp.company}</span>
-                      <span className="text-stone-500 text-xs px-2 py-1 bg-stone-800 rounded-full">{exp.period}</span>
+                      <span className="text-stone-300 text-xs px-2 py-1 bg-stone-800 rounded-full">{exp.period}</span>
                     </div>
                     <p className="text-stone-300 text-sm">{exp.description}</p>
                   </div>
