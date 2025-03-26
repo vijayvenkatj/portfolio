@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import dp from '../../../public/dp.png';
+import dp from '../../../public/dp.webp';
 
 export default function ProfileImage() {
   return (
@@ -13,16 +13,16 @@ export default function ProfileImage() {
       
       {/* Improved image container */}
       <div className="relative overflow-hidden rounded-full border-4 border-gray-800/50">
-        <Image
-          priority
-          src={dp}
-          alt="Vijay - Portrait"
-          width={400}
-          height={400}
-          layout="intrinsic"  // Helps with CLS (Cumulative Layout Shift)
-          quality={90}
-          className="object-cover rounded-full transition-transform duration-300 hover:scale-105"
-        />
+      <Image
+        src={dp}
+        alt="Vijay - Portrait"
+        width={400}
+        height={400}
+        quality={80} // Reduce quality slightly
+        priority // Keep priority if it's the LCP element
+        className="object-cover rounded-full transition-transform duration-300 hover:scale-105"
+      />
+
       </div>
     </div>
   );

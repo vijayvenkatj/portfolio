@@ -93,7 +93,7 @@ const SkillCard = ({ icon: Icon, title, description, iconBg }: {
       </div>
       <h4 className="text-white font-medium text-sm md:text-base">{title}</h4>
     </div>
-    <p className="text-stone-300 text-sm">{description}</p>
+    <p className="text-stone-100 text-sm">{description}</p>
   </div>
 );
 
@@ -131,7 +131,7 @@ export default function AboutMe() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section header */}
         <div className="mb-12 md:mb-16">
-          <p className="text-center text-sm uppercase tracking-wider text-stone-300 mb-2">ABOUT ME</p>
+          <p className="text-center text-sm uppercase tracking-wider text-stone-100 mb-2">ABOUT ME</p>
           <h1 className="text-center text-3xl md:text-5xl font-bold">
             <span className="text-white">Who</span>
             <span className="bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text ml-2">I Am</span>
@@ -144,7 +144,7 @@ export default function AboutMe() {
             <div className="bg-stone-950/80 rounded-xl p-6 border border-white/10">
               <h2 className="text-xl text-white font-bold mb-4">Full Stack Developer</h2>
               <div className="space-y-3">
-                <div className="flex items-center text-sm text-stone-300">
+                <div className="flex items-center text-sm text-stone-100">
                   <div className="w-6 h-6 mr-3 flex items-center justify-center">
                     <svg className="w-4 h-4 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <circle cx="12" cy="12" r="10" strokeWidth="2" />
@@ -154,7 +154,7 @@ export default function AboutMe() {
                   </div>
                   <span>Based in Tamilnadu, India</span>
                 </div>
-                <div className="flex items-center text-sm text-stone-300">
+                <div className="flex items-center text-sm text-stone-100">
                   <div className="w-6 h-6 mr-3 flex items-center justify-center">
                     <svg className="w-4 h-4 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" strokeWidth="2" />
@@ -199,7 +199,7 @@ export default function AboutMe() {
                   <h2 className="text-xl md:text-2xl font-bold text-white">A Bit About Me</h2>
                 </div>
                 
-                <p className="text-stone-300">
+                <p className="text-stone-100">
                   I'm a passionate full-stack developer specializing in modern web technologies and cybersecurity. I build scalable, responsive, and secure web applications using JavaScript/TypeScript frameworks like React and Next.js, alongside robust backend solutions with Node.js and cloud services. My expertise extends to penetration testing, CTF challenges, and security-focused development, ensuring applications are both efficient and resilient.
                 </p>
                 
@@ -252,9 +252,9 @@ export default function AboutMe() {
                     <h3 className="text-lg font-bold text-white">{exp.position}</h3>
                     <div className="flex flex-wrap items-center mt-1 mb-3">
                       <span className="text-purple-400 text-sm mr-3">{exp.company}</span>
-                      <span className="text-stone-300 text-xs px-2 py-1 bg-stone-800 rounded-full">{exp.period}</span>
+                      <span className="text-stone-100 text-xs px-2 py-1 bg-stone-800 rounded-full">{exp.period}</span>
                     </div>
-                    <p className="text-stone-300 text-sm">{exp.description}</p>
+                    <p className="text-stone-100 text-sm">{exp.description}</p>
                   </div>
                 ))}
               </div>

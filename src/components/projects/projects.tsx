@@ -52,7 +52,7 @@ const CaseStudyCard = React.memo(({ caseStudy, isActive, onClick }: CaseStudyCar
         
         <div className="absolute bottom-0 left-0 p-4 w-full">
           <h3 className="text-xl font-bold text-white mb-1">{caseStudy.title}</h3>
-          <p className="text-sm text-stone-300 line-clamp-2">{caseStudy.description}</p>
+          <p className="text-sm text-stone-100 line-clamp-2">{caseStudy.description}</p>
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
         {/* Section header */}
         <div className="mb-8 md:mb-16">
           <p 
-            className="text-center text-sm uppercase tracking-wider text-stone-300 mb-2"
+            className="text-center text-sm uppercase tracking-wider text-stone-100 mb-2"
             aria-hidden="true"
           >
             FEATURED Personal Projects
@@ -122,7 +122,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
               <path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-          <span className="text-stone-300 text-sm">
+          <span className="text-stone-100 text-sm">
             {activeStudy + 1} / {caseStudies.length}
           </span>
           <button 
@@ -224,7 +224,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
               </div>
             </div>
               
-            <p className="text-sm md:text-base text-stone-300 mb-6 md:mb-8">
+            <p className="text-sm md:text-base text-stone-100 mb-6 md:mb-8">
               {caseStudies[activeStudy].description}
             </p>
               
@@ -236,7 +236,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
                       <path d="M12 22L3 17V7L12 2L21 7V17L12 22Z" />
                     </svg>
                   </div>
-                  <p className="text-sm md:text-base text-stone-300">{highlight}</p>
+                  <p className="text-sm md:text-base text-stone-100">{highlight}</p>
                 </div>
               ))}
             </div>
