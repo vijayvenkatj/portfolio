@@ -256,11 +256,11 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
         </div>
         
         {/* Mobile dot indicators for navigation */}
-        <div className="flex justify-center mt-6 md:hidden">
+        <div className="flex justify-center mt-6 md:hidden space-x-3">
           {caseStudies.map((_, index) => (
             <button
               key={index}
-              className={`w-2 h-2 mx-1 rounded-full ${
+              className={`w-3 h-3 rounded-full ${
                 index === activeStudy ? 'bg-purple-500' : 'bg-stone-700'
               }`}
               onClick={() => setActiveStudy(index)}
@@ -268,6 +268,7 @@ const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
             />
           ))}
         </div>
+
       </div>
     </section>
   );
