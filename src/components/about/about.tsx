@@ -179,7 +179,8 @@ export default function AboutMe() {
               {/* CTA */}
               <div className="mt-6">
                 <Link 
-                  href="/resume.pdf" 
+                  href="/vijay-resume.pdf"
+                  download="vijay-resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 px-6 bg-stone-900 hover:border-purple-400/70 border border-purple-400/10 text-white font-medium rounded-lg text-center block"

@@ -93,7 +93,8 @@ export default function StickyGlassNavbar() {
         {/* Download Resume Button */}
         <div className="hidden md:block">
           <Link 
-            href="/resume.pdf" 
+            href="/vijay-resume.pdf" 
+            download="vijay-resume.pdf"
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center space-x-2 bg-stone-900 hover:border-purple-400/70 text-white border border-purple-400/10 px-6 py-2 rounded-full font-medium transition-all duration-300"
