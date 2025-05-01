@@ -22,6 +22,12 @@ const experiences: Experience[] = [
     description: 'Developed security-focused web applications, including a Cypher CLI tool using Node.js and Go. Built and optimized scalable applications with React, Next.js, and cloud services, ensuring performance and security best practices.'
   },
   {
+    company: "Granville Tech",
+    position: "Backend Intern",
+    period: "APRIL 2025 - Present",
+    description: "Developing an Education Platform with Live Classes, AI Adaptive Learning. Used FFmpeg , SRT, HLS for live streaming and transcoding with Adaptive Bitrate Streaming. Used AWS ECS for managing containerized live transcoding server to reduce cost by more than 70%."
+  },
+  {
     company: "CyberSecurity Club IIITK",
     position: "Core Member",
     period: "2023 - Present",
@@ -32,7 +38,7 @@ const experiences: Experience[] = [
 const SocialLinks = () => (
   <div className="flex items-center space-x-4">
     <Link 
-      href="https://github.com/vijayvenkatj" 
+      href="https://github.com/vijayvenkatj"
       target="_blank" 
       rel="noopener noreferrer"
       className="w-10 h-10 rounded-full bg-stone-900/80 flex items-center justify-center border border-white/10 hover:border-cyan-500 transition-colors"
