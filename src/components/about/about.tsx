@@ -19,7 +19,7 @@ const experiences: Experience[] = [
     company: 'Freelance & Personal Projects',
     position: 'Full Stack Developer & Security Researcher',
     period: 'Ongoing',
-    description: 'Developed security-focused web applications, including a Cypher CLI tool using Node.js and Go. Built and optimized scalable applications with React, Next.js, and cloud services, ensuring performance and security best practices.'
+    description: 'Developed security-focused web applications, using Next.js and Go. Built and optimized scalable applications with Next.js, and cloud services, ensuring performance and security best practices.'
   },
   {
     company: "Granville Tech",
