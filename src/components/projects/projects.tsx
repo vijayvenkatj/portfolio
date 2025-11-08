@@ -4,10 +4,10 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
 
+import livetran from '../../../public/livetran.png';
+import dhwanini from '../../../public/dhwanini.png';
 import cypher from '../../../public/cypher.png';
 import intellisum from '../../../public/intellisum.png';
-import timetable from '../../../public/timetable.png';
-import portfolio from '../../../public/portfolio.png';
 
 // Define TypeScript interfaces
 interface CaseStudy {
@@ -278,20 +278,32 @@ export default function FeaturedWork() {
   const caseStudiesData: CaseStudy[] = [
     {
       id: 1,
-      title: "TimeTable",
-      description: "A simple and efficient timetable management app for students with AI-powered schedule optimization.",
-      imageUrl: timetable,
+      title: "LiveTran",
+      description: "A low-latency live video streaming platform that ingests SRT feeds, transcodes them into adaptive-bitrate HLS using FFmpeg, and delivers them globally through a distributed Go microservices architecture with NATS and Cloudflare R2.",
+      imageUrl: livetran,
       highlights: [
-        "Designed intuitive interface for course scheduling.",
-        "Implemented Upload functionality for easy timetable creation.",
-        "Integrated conflict detection system for overlapping classes."
+        "Built distributed microservices architecture using Go for high-performance video processing.",
+        "Implemented SRT feed ingestion and FFmpeg-based transcoding to adaptive-bitrate HLS streams.",
+        "Designed scalable system with NATS for inter-service communication and Cloudflare R2 for global content delivery.",
+        "Optimized for low-latency streaming with efficient transcoding pipelines."
       ],
-      technologies: ["React", "Mongo", "Tailwind CSS", "Generative AI"],
-      link: "https://timetable.vijayvenkatj.me",
-      github: "https://github.com/CampusCrafters/Timetable_v2"
+      technologies: ["Go", "FFmpeg", "NATS", "Cloudflare R2", "HLS", "SRT", "Microservices"],
     },
     {
       id: 2,
+      title: "Dhwanini",
+      description: "A full-featured music education platform combining a public website and an academy portal, built with Next.js, Supabase, and Razorpay, enabling online admissions, interactive video lessons, progress tracking, assignments, and certifications for music learners. (Freelance)",
+      imageUrl: dhwanini,
+      highlights: [
+        "Developed comprehensive music education platform with dual interfaces for public and academy users.",
+        "Integrated Razorpay for seamless payment processing and online admissions.",
+        "Built interactive video lesson system with progress tracking and assignment management.",
+        "Implemented certification system and student progress analytics for music learners."
+      ],
+      technologies: ["Next.js", "Supabase", "Razorpay", "TypeScript", "Tailwind CSS"],
+    },
+    {
+      id: 3,
       title: "Cypher-Cli",
       description: "An Open Source client-side cloud Password Manager with advanced encryption techniques.",
       imageUrl: cypher,
@@ -305,7 +317,7 @@ export default function FeaturedWork() {
       github: "https://github.com/vijayvenkatj/Cypher-Cli",
     },
     {
-      id: 3,
+      id: 4,
       title: "IntelliSum",
       description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization.",
       imageUrl: intellisum,
@@ -317,19 +329,6 @@ export default function FeaturedWork() {
       technologies: ["Next.js", "MongoDB", "Gmail API", "Oauth", "Tailwind CSS"],
       link: "https://intellisum.vijayvenkatj.me",
       github: "https://github.com/vijayvenkatj/IntelliSum"
-    },
-    {
-      id: 4,
-      title: "Terminal-based Portfolio Website",
-      description: "A modern, responsive terminal based portfolio website built with Next.js and Tailwind CSS to showcase projects and skills.",
-      imageUrl: portfolio,
-      highlights: [
-        "Designed with a focus on user experience and accessibility.",
-        "Optimized for performance and SEO."
-      ],
-      technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-      link: "https://terminal.vijayvenkatj.me",
-      github: "https://github.com/vijayvenkatj/terminal"
     }
   ];
   
