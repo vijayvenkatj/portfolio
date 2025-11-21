@@ -11,7 +11,7 @@ export default function HomePage() {
       <div className="fixed inset-0 z-0">
         <PortfolioBackground />
       </div>
-        
+
       {/* Main Content */}
       <div className="relative z-20">
         <div className="container mx-auto px-2">

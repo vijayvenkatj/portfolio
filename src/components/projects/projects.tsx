@@ -1,8 +1,9 @@
 "use client"
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import Head from 'next/head';
+import { Github, ExternalLink, Code2 } from 'lucide-react';
 
 import livetran from '../../../public/livetran.png';
 import dhwanini from '../../../public/dhwanini.png';
@@ -21,256 +22,76 @@ interface CaseStudy {
   github?: string;
 }
 
-interface CaseStudyCardProps {
-  caseStudy: CaseStudy;
-  isActive: boolean;
-  onClick: () => void;
+interface ProjectCardProps {
+  project: CaseStudy;
 }
 
-interface FeaturedCaseStudiesProps {
-  caseStudies: CaseStudy[];
-}
-
-const CaseStudyCard = React.memo(({ caseStudy, isActive, onClick }: CaseStudyCardProps) => {
+const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <div 
-      className={`relative rounded-xl overflow-hidden transition-all duration-500 cursor-pointer mb-4 ${
-        isActive ? 'border-purple-600/90' : 'border-white/40'
-      } border`}
-      onClick={onClick}
-      role="article"
-      aria-label={`Project: ${caseStudy.title}`}
-    >
-      <div className="relative w-full aspect-video overflow-hidden">
+    <div className="group relative bg-stone-900/40 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10 flex flex-col h-full">
+      {/* Image Container */}
+      <div className="relative h-48 sm:h-60 overflow-hidden">
+        <div className="absolute inset-0 bg-stone-900/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
         <Image
-          src={caseStudy.imageUrl}
-          alt={`${caseStudy.title} project screenshot`}
-          loading='lazy'
-          className="object-cover"
+          src={project.imageUrl}
+          alt={project.title}
+          fill
+          className="object-cover transform group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 to-transparent opacity-100"></div>
-        
-        <div className="absolute bottom-0 left-0 p-4 w-full">
-          <h3 className="text-xl font-bold text-white mb-1">{caseStudy.title}</h3>
-          <p className="text-sm text-stone-100 line-clamp-2">{caseStudy.description}</p>
+
+        {/* Links Overlay */}
+        <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-stone-950/60 backdrop-blur-[2px]">
+          {project.github && (
+            <Link
+              href={project.github}
+              target="_blank"
+              className="p-3 bg-stone-900 rounded-full text-white hover:text-purple-400 hover:bg-stone-800 border border-white/10 transition-all transform hover:scale-110"
+              title="View Source Code"
+            >
+              <Github className="w-6 h-6" />
+            </Link>
+          )}
+          {project.link && (
+            <Link
+              href={project.link}
+              target="_blank"
+              className="p-3 bg-stone-900 rounded-full text-white hover:text-cyan-400 hover:bg-stone-800 border border-white/10 transition-all transform hover:scale-110"
+              title="Visit Project"
+            >
+              <ExternalLink className="w-6 h-6" />
+            </Link>
+          )}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-6 flex flex-col flex-grow">
+        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+          {project.title}
+        </h3>
+
+        <p className="text-stone-300 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
+          {project.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {project.technologies.slice(0, 4).map((tech, index) => (
+            <span
+              key={index}
+              className="px-3 py-1 text-xs font-medium text-stone-300 bg-stone-800/50 rounded-full border border-white/5"
+            >
+              {tech}
+            </span>
+          ))}
+          {project.technologies.length > 4 && (
+            <span className="px-3 py-1 text-xs font-medium text-stone-400 bg-stone-900/50 rounded-full border border-white/5">
+              +{project.technologies.length - 4}
+            </span>
+          )}
         </div>
       </div>
     </div>
-  );
-});
-
-const FeaturedCaseStudies = ({ caseStudies }: FeaturedCaseStudiesProps) => {
-  const [activeStudy, setActiveStudy] = useState<number>(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const handleScroll = (direction: 'prev' | 'next') => {
-    if (direction === 'prev') {
-      setActiveStudy(prev => (prev > 0 ? prev - 1 : caseStudies.length - 1));
-    } else {
-      setActiveStudy(prev => (prev < caseStudies.length - 1 ? prev + 1 : 0));
-    }
-  };
-
-  return (
-    <section 
-      id="projects" 
-      className="relative w-full py-12 md:py-20 bg-transparent"
-      aria-labelledby="featured-projects-title"
-    >
-      <Head>
-        <title>Vijay Venkat - Featured Projects</title>
-        <meta 
-          name="description" 
-          content="Explore my featured software development projects showcasing innovative solutions in web development, AI, and security." 
-        />
-        <meta 
-          name="keywords" 
-          content="software projects, web development, AI, NextJS, React, Go, cybersecurity, full-stack development" 
-        />
-        <link 
-          rel="canonical" 
-          href="https://vijayvenkatj.me/projects" 
-        />
-      </Head>
-
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section header */}
-        <div className="mb-8 md:mb-16">
-          <p 
-            className="text-center text-md uppercase tracking-wider text-white mb-2"
-            aria-hidden="true"
-          >
-            FEATURED Personal Projects
-          </p>
-          <h2 
-            id="featured-projects-title" 
-            className="text-center text-3xl md:text-5xl font-bold mb-6 md:mb-12"
-          >
-            <span className="text-white">Featured</span>
-            <span className="bg-gradient-to-r from-purple-400 to-purple-600 text-transparent bg-clip-text ml-2 md:ml-4">work</span>
-          </h2>
-        </div>
-        
-        {/* Mobile navigation controls (visible on small screens) */}
-        <div className="flex justify-between items-center mb-6 md:hidden">
-          <button 
-            className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
-            onClick={() => handleScroll('prev')}
-            aria-label="Previous project"
-          >
-            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <span className="text-white text-md">
-            {activeStudy + 1} / {caseStudies.length}
-          </span>
-          <button 
-            className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
-            onClick={() => handleScroll('next')}
-            aria-label="Next project"
-          >
-            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M9 6l6 6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-          {/* Thumbnails container - full width on mobile, left side on desktop */}
-          <div className="lg:col-span-5 relative">
-            {/* Desktop scroll buttons - hidden on mobile */}
-            <div className="hidden md:flex absolute -top-12 right-0 space-x-2 z-10">
-              <button 
-                className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollTop -= 200;
-                  }
-                }}
-                aria-label="Scroll up"
-              >
-                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M18 15l-6-6-6 6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-              <button 
-                className="p-2 rounded-full bg-stone-900 hover:bg-stone-800 border border-white/10 transition-colors" 
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollTop += 200;
-                  }
-                }}
-                aria-label="Scroll down"
-              >
-                <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M6 9l6 6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </div>
-            
-            {/* Desktop scrollable container - hidden on mobile */}
-            <div 
-              ref={scrollRef} 
-              className="hidden md:block max-h-96 lg:max-h-[500px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-stone-900"
-              aria-label="Project thumbnails"
-            >
-              {caseStudies.map((study, index) => (
-                <CaseStudyCard
-                  key={study.id}
-                  caseStudy={study}
-                  isActive={index === activeStudy}
-                  onClick={() => setActiveStudy(index)}
-                />
-              ))}
-            </div>
-            
-            {/* Mobile current case study thumbnail - visible only on mobile */}
-            <div className="md:hidden">
-              <CaseStudyCard
-                caseStudy={caseStudies[activeStudy]}
-                isActive={true}
-                onClick={() => {}}
-              />
-            </div>
-          </div>
-          
-          {/* Active case study details - full width on mobile, right side on desktop */}
-          <div 
-            className="lg:col-span-7 bg-stone-950/80 rounded-xl p-6 md:p-8 border border-white/30"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <div className="flex items-start mb-4 md:mb-6">
-              <div className="h-px w-6 md:w-8 bg-purple-500 mr-2 mt-3"></div>
-              <h3 className="text-xl md:text-2xl font-bold text-white">{caseStudies[activeStudy].title}</h3>
-              <div className="ml-auto flex gap-2">
-                {caseStudies[activeStudy].github && (
-                  <Link href={caseStudies[activeStudy].github} className="mr-2">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center border border-white/20 hover:border-purple-500 transition-colors">
-                      <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                  </Link>
-                )}
-                <Link href={caseStudies[activeStudy].link || '#'}>
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center border border-white/20 hover:border-purple-500 transition-colors">
-                    <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <path d="M5 12h14M12 5l7 7-7 7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </div>
-                </Link>
-              </div>
-            </div>
-              
-            <p className="text-sm md:text-base text-stone-100 mb-6 md:mb-8">
-              {caseStudies[activeStudy].description}
-            </p>
-              
-            <div className="space-y-3 md:space-y-4">
-              {caseStudies[activeStudy].highlights.map((highlight, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="mr-2 mt-1">
-                    <svg className="w-4 h-4 text-purple-500" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 22L3 17V7L12 2L21 7V17L12 22Z" />
-                    </svg>
-                  </div>
-                  <p className="text-sm md:text-base text-stone-100">{highlight}</p>
-                </div>
-              ))}
-            </div>
-              
-            {/* Technologies */}
-            <div className="mt-6 md:mt-10 flex flex-wrap gap-2">
-              {caseStudies[activeStudy].technologies.map((tech, index) => (
-                <div
-                  key={index}
-                  className="px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm border border-white/30 text-white bg-stone-900/60 hover:border-purple-500"
-                >
-                  {tech}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        {/* Mobile dot indicators for navigation */}
-        <div className="flex justify-center mt-6 md:hidden space-x-3">
-          {caseStudies.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full ${
-                index === activeStudy ? 'bg-purple-500' : 'bg-stone-700'
-              }`}
-              onClick={() => setActiveStudy(index)}
-              aria-label={`Go to project ${index + 1}`}
-            />
-          ))}
-        </div>
-
-      </div>
-    </section>
   );
 };
 
@@ -281,80 +102,63 @@ export default function FeaturedWork() {
       title: "LiveTran",
       description: "A low-latency live video streaming platform that ingests SRT feeds, transcodes them into adaptive-bitrate HLS using FFmpeg, and delivers them globally through a distributed Go microservices architecture with NATS and Cloudflare R2.",
       imageUrl: livetran,
-      highlights: [
-        "Built distributed microservices architecture using Go for high-performance video processing.",
-        "Implemented SRT feed ingestion and FFmpeg-based transcoding to adaptive-bitrate HLS streams.",
-        "Designed scalable system with NATS for inter-service communication and Cloudflare R2 for global content delivery.",
-        "Optimized for low-latency streaming with efficient transcoding pipelines."
-      ],
+      highlights: [],
       technologies: ["Go", "FFmpeg", "NATS", "Cloudflare R2", "HLS", "SRT", "Microservices"],
     },
     {
       id: 2,
       title: "Dhwanini",
-      description: "A full-featured music education platform combining a public website and an academy portal, built with Next.js, Supabase, and Razorpay, enabling online admissions, interactive video lessons, progress tracking, assignments, and certifications for music learners. (Freelance)",
+      description: "A full-featured music education platform combining a public website and an academy portal, built with Next.js, Supabase, and Razorpay, enabling online admissions, interactive video lessons, progress tracking, assignments, and certifications for music learners.",
       imageUrl: dhwanini,
-      highlights: [
-        "Developed comprehensive music education platform with dual interfaces for public and academy users.",
-        "Integrated Razorpay for seamless payment processing and online admissions.",
-        "Built interactive video lesson system with progress tracking and assignment management.",
-        "Implemented certification system and student progress analytics for music learners."
-      ],
+      highlights: [],
       technologies: ["Next.js", "Supabase", "Razorpay", "TypeScript", "Tailwind CSS"],
     },
     {
       id: 3,
       title: "Cypher-Cli",
-      description: "An Open Source client-side cloud Password Manager with advanced encryption techniques.",
+      description: "An Open Source client-side cloud Password Manager with advanced encryption techniques. Built for Browser and CLI with zero-knowledge encryption for maximum security.",
       imageUrl: cypher,
-      highlights: [
-        "Built with Go for high performance and cross-platform compatibility.",
-        "Built for Browser and CLI.",
-        "Implemented zero-knowledge encryption for maximum security.",
-        "Created intuitive CLI interface for easy password management."
-      ],
+      highlights: [],
       technologies: ["Go", "CLI", "Cryptography", "Security"],
       github: "https://github.com/vijayvenkatj/Cypher-Cli",
     },
     {
       id: 4,
       title: "IntelliSum",
-      description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization.",
+      description: "A system that integrates the Gmail API to retrieve inbox data and employs Large Language Models for automated email summarization via a responsive dashboard.",
       imageUrl: intellisum,
-      highlights: [
-        "Built responsive dashboard for email management.",
-        "Gmail API integration for real-time email fetching.",
-        "Implemented Gemini API integration for email content analysis.",
-      ],
+      highlights: [],
       technologies: ["Next.js", "MongoDB", "Gmail API", "Oauth", "Tailwind CSS"],
       link: "https://intellisum.vijayvenkatj.me",
       github: "https://github.com/vijayvenkatj/IntelliSum"
     }
   ];
-  
+
   return (
-    <>
-      <Head>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Vijay Venkat - Featured Projects",
-            "description": "A collection of innovative software development projects showcasing expertise in web technologies, AI, and cybersecurity.",
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": caseStudiesData.map((project, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "name": project.title,
-                "description": project.description,
-                "url": project.link
-              }))
-            }
-          })}
-        </script>
-      </Head>
-      <FeaturedCaseStudies caseStudies={caseStudiesData} />
-    </>
+    <section id="projects" className="relative w-full py-20 md:py-32 bg-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        {/* Section header */}
+        <div className="mb-16 md:mb-24 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900/50 border border-white/10 text-purple-400 text-sm font-medium mb-6">
+            <Code2 className="w-4 h-4" />
+            <span>PORTFOLIO</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <span className="text-white">Featured</span>
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 text-transparent bg-clip-text ml-3">Work</span>
+          </h2>
+          <p className="text-stone-400 max-w-2xl mx-auto text-lg">
+            A collection of projects that showcase my passion for building scalable systems,
+            solving complex problems, and creating intuitive user experiences.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {caseStudiesData.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

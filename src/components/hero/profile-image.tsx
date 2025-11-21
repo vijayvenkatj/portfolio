@@ -18,7 +18,7 @@ export default function ProfileImage() {
         alt="Vijay - Portrait"
         width={350}
         height={350}
-        quality={80} // Reduce quality slightly
+        quality={75} // Reduce quality slightly
         priority // Keep priority if it's the LCP element
         className="object-cover rounded-full"
       />
